@@ -113,6 +113,7 @@ export default function Hero({ session, next }) {
                             src="/assets/hero.svg"
                             width={510}
                             height={510}
+                            alt="Hero Image"
                         />
                     </motion.div>
                 </main>
