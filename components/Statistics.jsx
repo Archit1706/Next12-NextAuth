@@ -41,12 +41,12 @@ const Statistics = () => {
                         <h1 className="font-semibold text-2xl md:text-4xl mb-2 text-cyan-700">
                             Our Sentiment Analysis in Numbers
                         </h1>
-                        <div className="leading-relaxed">
+                        <div className="leading-relaxed text-gray-500 font-normal">
                             Discover the Data Behind Our Success.
                         </div>
                     </div>
                     <div className="p-4 sm:w-1/2 lg:w-1/4 w-1/2" ref={ref}>
-                        <h2 className="title-font font-medium text-3xl text-gray-900">
+                        <h2 className="title-font font-medium text-3xl text-cyan-800">
                             {inView ? (
                                 <CountUp
                                     start={0.0}
@@ -59,10 +59,12 @@ const Statistics = () => {
                                 0
                             )}
                         </h2>
-                        <p className="leading-relaxed">Active Users</p>
+                        <p className="leading-relaxed text-cyan-600">
+                            Active Users
+                        </p>
                     </div>
                     <div className="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
-                        <h2 className="title-font font-medium text-3xl text-gray-900">
+                        <h2 className="title-font font-medium text-3xl text-cyan-800">
                             {inView ? (
                                 <CountUp
                                     start={0.0}
@@ -75,10 +77,12 @@ const Statistics = () => {
                                 0
                             )}
                         </h2>
-                        <p className="leading-relaxed">Audio Files Processed</p>
+                        <p className="leading-relaxed text-cyan-600">
+                            Audio Files Processed
+                        </p>
                     </div>
                     <div className="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
-                        <h2 className="title-font font-medium text-3xl text-gray-900">
+                        <h2 className="title-font font-medium text-3xl text-cyan-800">
                             {inView ? (
                                 <CountUp
                                     start={0.0}
@@ -91,10 +95,12 @@ const Statistics = () => {
                                 0
                             )}
                         </h2>
-                        <p className="leading-relaxed">Sentiment Accuracy</p>
+                        <p className="leading-relaxed text-cyan-600">
+                            Sentiment Accuracy
+                        </p>
                     </div>
                     <div className="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
-                        <h2 className="title-font font-medium text-3xl text-gray-900">
+                        <h2 className="title-font font-medium text-3xl text-cyan-800">
                             {inView ? (
                                 <CountUp
                                     start={0.0}
@@ -107,7 +113,9 @@ const Statistics = () => {
                                 0
                             )}
                         </h2>
-                        <p className="leading-relaxed">Response Time</p>
+                        <p className="leading-relaxed text-cyan-600">
+                            Response Time
+                        </p>
                     </div>
                 </motion.div>
             </div>

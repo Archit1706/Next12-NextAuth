@@ -21,7 +21,7 @@ const Features = () => {
                     <h2 className="text-gray-500">
                         Elevating Customer Experiences, One Call at a Time.
                     </h2>
-                    <h1 className="sm:text-3xl text-2xl font-normal title-font uppercase  text-cyan-700">
+                    <h1 className="sm:text-4xl text-2xl font-semibold uppercase text-cyan-700">
                         Features
                     </h1>
                 </motion.div>
