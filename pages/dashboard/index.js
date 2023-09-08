@@ -9,13 +9,14 @@ import DashLayout from '../../layout/DashLayout'
 import { TbReportSearch } from 'react-icons/tb'
 import { BiSolidPhoneCall, BiChat } from 'react-icons/bi';
 import LineChart from '../../components/Charts/LineChart';
-import { Line } from 'react-chartjs-2'
+import PieChart from '../../components/Charts/PieChart'
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
+import { FileUploader } from "react-drag-drop-files";
 
 
 export default function Dashboard() {
-
+    const fileTypes = ["txt"];
     const { data: session } = useSession()
 
     function handleSignOut() {
@@ -24,11 +25,29 @@ export default function Dashboard() {
 
     const [ref, inView] = useInView({
         threshold: 0.5,
+        triggerOnce: true,
     });
+
+    const [reportData, setReportData] = useState([
+        { date: '01/01/2021', time: '12:00', sentimentType: 'Audio', result: 'Good' },
+        { date: '01/01/2021', time: '12:00', sentimentType: 'Chat', result: 'Best' },
+        { date: '01/01/2021', time: '12:00', sentimentType: 'Chat', result: 'Good' },
+        { date: '01/01/2021', time: '12:00', sentimentType: 'Audio', result: 'Bad' },
+        { date: '01/01/2021', time: '12:00', sentimentType: 'Audio', result: 'Good' },
+        { date: '01/01/2021', time: '12:00', sentimentType: 'Chat', result: 'Not so Bad' },
+    ]);
+
+    const handleResult = () => {
+        alert("Hello")
+    }
+
+    const handleChat = (file) => {
+        console.log(file);
+    };
 
     return (
         // <DashLayout>
-        <div className='container flex flex-col justify-center items-center text-center gap-2 md:gap-4 p-4 bg-cyan-50'>
+        <div className='flex flex-col justify-center items-center text-center gap-2 md:gap-4 p-4 bg-cyan-50'>
             {/* <div className={styles.container}> */}
             <Head>
                 <title>VoiceSentri | Dashboard</title>
@@ -36,12 +55,15 @@ export default function Dashboard() {
 
             {/* <Navbar session={session} /> */}
             {/* <section className="w-full min-h-screen"> */}
-            {/* <main className="min-h-[calc(100vh - 64px)] md:min-h-[calc(100vh - 80px)] flex flex-col md:flex-row justify-center md:gap-8 lg:gap-12 items-center text-center md:text-left "> */}
+            {/* <main className="min-h-[calc(100vh - 64px)] md:min-h-[calc(100vh - 80px)] flex flex-col md:flex-row justify-center md:gap-8 lg:gap-12 items-center text-center md:text-center "> */}
             {/* </main> */}
             {/* </section> */}
             {/* {session ? User({ session, handleSignOut }) : Guest()} */}
-            <div className="bg-gradient-to-br from-cyan-100 to-cyan-300 shadow-sm shadow-cyan-600 w-full h-12 flex justify-center items-center rounded-md">
+            <div className="relative bg-gradient-to-br from-cyan-100 to-cyan-300 shadow-sm shadow-cyan-600 w-full h-12 flex justify-center items-center rounded-md">
                 <h1 className='text-2xl md:text-3xl font-bold text-cyan-600'>Dashboard</h1>
+                <a href='..' className='absolute right-4 md:right-8 text-cyan-600 hover:text-cyan-800 hover:underline'>
+                    Back
+                </a>
             </div>
             <div className='w-full h-auto flex justify-center items-center flex-col md:flex-row gap-2 md:gap-4' ref={ref}>
                 <div className='w-full md:w-1/3 h-28 bg-gradient-to-br from-cyan-100 to-cyan-300 shadow-sm shadow-cyan-600 rounded-md flex justify-center items-center flex-row gap-2 md:gap-4'>
@@ -54,7 +76,7 @@ export default function Dashboard() {
                             {inView ? (
                                 <CountUp
                                     start={0}
-                                    end={6}
+                                    end={reportData.filter(data => data.sentimentType === 'Audio').length}
                                     duration={2}
                                     decimals={0}
                                     suffix={""}
@@ -75,7 +97,7 @@ export default function Dashboard() {
                             {inView ? (
                                 <CountUp
                                     start={0}
-                                    end={6}
+                                    end={reportData.filter(data => data.sentimentType === 'Chat').length}
                                     duration={2}
                                     decimals={0}
                                     suffix={""}
@@ -96,7 +118,7 @@ export default function Dashboard() {
                             {inView ? (
                                 <CountUp
                                     start={0}
-                                    end={6}
+                                    end={reportData.length}
                                     duration={2}
                                     decimals={0}
                                     suffix={""}
@@ -109,92 +131,64 @@ export default function Dashboard() {
                 </div>
             </div>
             <div className='w-full h-full flex justify-center items-center flex-col md:flex-row gap-2 md:gap-4'>
-                <div className='w-full md:w-1/2 bg-gradient-to-br from-cyan-100 to-cyan-300 shadow-sm shadow-cyan-600 rounded-md flex justify-center items-center flex-col gap-2 p-4 md:h-80'>
+                <div className='w-full md:w-1/2 bg-gradient-to-br from-cyan-100 to-cyan-300 shadow-sm shadow-cyan-600 rounded-md flex justify-center items-center flex-col gap-2 p-4 md:h-96'>
+                    <h1 className='text-cyan-600 font-bold text-2xl'>Sentiment Score of Last Call Analyzed</h1>
                     <LineChart chartData={chartData} />
                 </div>
-                <div className='w-full md:w-1/2 bg-gradient-to-br from-cyan-100 to-cyan-300 shadow-sm shadow-cyan-600 rounded-md flex justify-center items-center flex-col gap-2 p-4 md:h-80'>
-                    <LineChart chartData={chartData} />
+                <div className='w-full md:w-1/2 bg-gradient-to-br from-cyan-100 to-cyan-300 shadow-sm shadow-cyan-600 rounded-md flex justify-center items-center flex-col gap-2 p-4 md:h-96'>
+                    <h1 className='text-cyan-600 font-bold text-2xl'>Sentiment Score of Last Chat Analyzed</h1>
+                    <PieChart chartData={pieData} />
                 </div>
             </div>
 
             <div className='w-full h-full flex justify-center items-center flex-col md:flex-row gap-2 md:gap-4'>
-                <div className='w-full md:w-2/3 h-96 bg-gradient-to-br from-cyan-100 to-cyan-300 shadow-sm shadow-cyan-600 rounded-md flex justify-start items-center flex-col gap-2 p-4'>
+                <div className='w-full md:w-2/3 h-auto bg-gradient-to-br from-cyan-100 to-cyan-300 shadow-sm shadow-cyan-600 rounded-md flex justify-start items-center flex-col gap-2 p-4'>
                     <div className="w-full">
-                        <div className="shadow overflow-hidden rounded border-b border-gray-200">
-                            <table className="min-w-full bg-white">
-                                <thead className="bg-cyan-800 text-cyan-200">
+                        <h1 className='text-cyan-600 font-bold text-2xl'>History</h1>
+                        <div className="shadow rounded border-b border-gray-200 overflow-x-scroll md:overflow-hidden">
+                            <table className="min-w-full bg-white ">
+                                <thead className="bg-cyan-800 text-cyan-100">
                                     <tr>
-                                        <th className="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">
-                                            Name
+                                        <th className="w-1/4 text-center py-3 px-4 uppercase font-semibold text-sm">
+                                            Date
                                         </th>
-                                        <th className="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">
-                                            Last name
+                                        <th className="w-1/4 text-center py-3 px-4 uppercase font-semibold text-sm">
+                                            Time
                                         </th>
-                                        <th className="text-left py-3 px-4 uppercase font-semibold text-sm">
-                                            Phone
+                                        <th className="w-1/4 text-center py-3 px-4 uppercase font-semibold text-sm">
+                                            Sentiment Type
                                         </th>
-                                        <th className="text-left py-3 px-4 uppercase font-semibold text-sm">
-                                            Email
+                                        <th className="w-1/4 text-center py-3 px-4 uppercase font-semibold text-sm">
+                                            Result
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody className="text-gray-700">
-                                    <tr>
-                                        <td className="w-1/3 text-left py-3 px-4">Lian</td>
-                                        <td className="w-1/3 text-left py-3 px-4">Smith</td>
-                                        <td className="text-left py-3 px-4">
-                                            <a className="hover:text-blue-500" href="tel:622322662">
-                                                622322662
-                                            </a>
-                                        </td>
-                                        <td className="text-left py-3 px-4">
-                                            <a className="hover:text-blue-500" href="mailto:jonsmith@mail.com">
-                                                jonsmith@mail.com
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr className="bg-gray-100">
-                                        <td className="w-1/3 text-left py-3 px-4">Emma</td>
-                                        <td className="w-1/3 text-left py-3 px-4">Johnson</td>
-                                        <td className="text-left py-3 px-4">
-                                            <a className="hover:text-blue-500" href="tel:622322662">
-                                                622322662
-                                            </a>
-                                        </td>
-                                        <td className="text-left py-3 px-4">
-                                            <a className="hover:text-blue-500" href="mailto:jonsmith@mail.com">
-                                                jonsmith@mail.com
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className="w-1/3 text-left py-3 px-4">Oliver</td>
-                                        <td className="w-1/3 text-left py-3 px-4">Williams</td>
-                                        <td className="text-left py-3 px-4">
-                                            <a className="hover:text-blue-500" href="tel:622322662">
-                                                622322662
-                                            </a>
-                                        </td>
-                                        <td className="text-left py-3 px-4">
-                                            <a className="hover:text-blue-500" href="mailto:jonsmith@mail.com">
-                                                jonsmith@mail.com
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr className="bg-gray-100">
-                                        <td className="w-1/3 text-left py-3 px-4">Isabella</td>
-                                        <td className="w-1/3 text-left py-3 px-4">Brown</td>
-                                        <td className="text-left py-3 px-4">
-                                            <a className="hover:text-blue-500" href="tel:622322662">
-                                                622322662
-                                            </a>
-                                        </td>
-                                        <td className="text-left py-3 px-4">
-                                            <a className="hover:text-blue-500" href="mailto:jonsmith@mail.com">
-                                                jonsmith@mail.com
-                                            </a>
-                                        </td>
-                                    </tr>
+                                <tbody className="text-cyan-800">
+                                    {Array.isArray(reportData) && reportData.length > 0 && reportData.map((data, index) => {
+                                        return (
+                                            <tr key={index} className={index % 2 == 0 ? "bg-cyan-100" : "bg-cyan-50"}>
+                                                <td className="w-1/4 text-center py-3 px-4">{data.date}</td>
+                                                <td className="w-1/4 text-center py-3 px-4">{data.time}</td>
+                                                <td className="w-1/4 text-center py-3 px-4">
+                                                    {data.sentimentType === 'Audio' ? (
+                                                        <span className='bg-cyan-800 text-cyan-200 rounded-full px-2 py-1'>{data.sentimentType}</span>
+                                                    ) : (
+                                                        <span className='bg-cyan-600 text-cyan-50 rounded-full px-2 py-1'>{data.sentimentType}</span>
+                                                    )}
+                                                </td>
+                                                <td className="w-1/4 text-center py-3 px-4">
+                                                    <button className='border border-cyan-700 rounded-md p-2 text-cyan-700 font-semibold hover:bg-cyan-700 hover:text-cyan-100 transition duration-300 ease-in-out' onClick={handleResult}>
+                                                        View Result
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        )
+                                    })}
+                                    {Array.isArray(reportData) && reportData.length === 0 && (
+                                        <tr>
+                                            <td colSpan={4} className="w-1/4 text-center text-cyan-800 py-3 px-4">No Data Found</td>
+                                        </tr>
+                                    )}
                                 </tbody>
                             </table>
                         </div>
@@ -203,7 +197,21 @@ export default function Dashboard() {
                 </div>
                 {/* <div className='w-full md:w-1/3 h-96 bg-gradient-to-br from-cyan-100 to-cyan-300 shadow-sm shadow-cyan-600 rounded-md flex justify-center items-center flex-col gap-2 p-4'>
                 </div> */}
-                <div className='w-full md:w-1/3 h-96 bg-gradient-to-br from-cyan-100 to-cyan-300 shadow-sm shadow-cyan-600 rounded-md flex justify-center items-center flex-col gap-2 p-4'>
+                <div className='w-full md:w-1/3 h-96 bg-gradient-to-br from-cyan-100 to-cyan-300 shadow-sm shadow-cyan-600 rounded-md flex justify-between items-center md:self-start flex-col gap-2 p-4'>
+                    <div className='w-full flex justify-center items-center flex-col gap-2'>
+                        <h1 className='text-cyan-600 font-bold text-2xl'>Analyze Chats</h1>
+                        <p className='text-gray-500 font-md'>Get Your Chat Sentiment Score!</p>
+                    </div>
+                    <FileUploader
+                        handleChange={handleChat}
+                        name="file"
+                        types={fileTypes}
+                        label="Drag & Drop your Chat files"
+                        multiple={false}
+                        required={true}
+                        className="h-full w-full border-2 border-gray-300 text-cyan-800 border-dashed rounded-md"
+                    />
+                    <h3 className='text-sm text-gray-500'>Note:  Your chat is not saved but the results are saved for your future reference.</h3>
                 </div>
             </div>
             {/* </div> */}
@@ -325,4 +333,31 @@ const chartData = {
         borderWidth: 1,
 
     }]
+};
+
+const pieData = {
+    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    datasets: [
+        {
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+            ],
+            borderWidth: 1,
+        },
+    ],
 };
