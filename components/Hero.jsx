@@ -1,31 +1,12 @@
-import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import Link from "next/link";
-import { getSession, useSession, signOut } from "next-auth/react";
-import { useRouter } from "next/router";
 import NextButton from "./NextButton";
 import { motion } from "framer-motion";
 import { fadeIn } from "../lib/fadein";
-import { GiBugleCall } from "react-icons/gi";
 
 export default function Hero({ session, next }) {
-    const router = useRouter();
-
-    function handleSignOut() {
-        signOut();
-    }
-
-    function handleLogin() {
-        router.push("/login");
-    }
-
     return (
         <div className={`${styles.container} bg-cyan-100 relative`}>
-            <Head>
-                <title>Sentimental Analysis</title>
-            </Head>
-
             <section className="w-full min-h-screen">
                 <main className="min-h-[calc(100vh - 64px)] md:min-h-[calc(100vh - 80px)] flex flex-col md:flex-row justify-center md:gap-8 lg:gap-12 items-center text-center md:text-left ">
                     <motion.div

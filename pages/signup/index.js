@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Layout from '../../layout/AuthLayout'
+import AuthLayout from '../../layout/AuthLayout'
 import Link from 'next/link'
 import styles from '../../styles/Form.module.css';
 import { HiAtSymbol, HiFingerPrint, HiOutlineUser } from "react-icons/hi";
@@ -39,7 +39,7 @@ export default function Register() {
     }
 
     return (
-        <Layout>
+        <AuthLayout>
             <Head>
                 <title>Sign Up</title>
             </Head>
@@ -119,6 +119,6 @@ export default function Register() {
                     Have an account? <Link href={'/login'}><a className='text-blue-700'>Log In</a></Link>
                 </p>
             </section>
-        </Layout>
+        </AuthLayout>
     )
 }

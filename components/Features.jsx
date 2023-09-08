@@ -96,7 +96,8 @@ const Features = () => {
                             <div className="flex-grow">
                                 <p className="leading-relaxed text-base text-cyan-200">
                                     Create tailored sentiment reports to track
-                                    specific KPIs and trends.
+                                    specific KPIs and trends to make informed
+                                    decisions.
                                 </p>
                                 <a
                                     href=""

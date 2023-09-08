@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Layout from '../../layout/AuthLayout'
+import AuthLayout from '../../layout/AuthLayout'
 import Link from 'next/link'
 import styles from '../../styles/Form.module.css';
 import Image from 'next/image'
@@ -60,7 +60,7 @@ export default function Login() {
     }
 
     return (
-        <Layout>
+        <AuthLayout>
 
             <Head>
                 <title>Login</title>
@@ -128,6 +128,6 @@ export default function Login() {
                 </p>
             </section>
 
-        </Layout>
+        </AuthLayout>
     )
 }

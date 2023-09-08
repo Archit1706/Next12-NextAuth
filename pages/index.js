@@ -20,7 +20,7 @@ const Home = () => {
   //   // triggerOnce: true,
   // });
   return (
-    <div className=''>
+    <div>
       <Head>
 
         <title>VoiceCentri - Transforming calls into actionable feedback.</title>
@@ -57,6 +57,7 @@ const Home = () => {
       <Packages id="packages" next="contact" session={session} />
 
       <Footer id="footer" />
+
     </div>
   );
 }

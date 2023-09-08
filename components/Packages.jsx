@@ -31,8 +31,8 @@ const Packages = () => {
                         viewport={{ once: true, amount: 0.2 }}
                         className="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-500"
                     >
-                        Whatever cardigan tote bag tumblr hexagon brooklyn
-                        asymmetrical.
+                        Choose the package that suits your role and level of
+                        insight with our Manager and Rookie packages.
                     </motion.p>
                     <motion.div
                         variants={fadeIn("down", 0.6)}
