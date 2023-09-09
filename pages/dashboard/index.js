@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { getSession, useSession, signOut } from "next-auth/react"
 import { TbReportSearch } from 'react-icons/tb'
 import { BiSolidPhoneCall, BiChat, BiSolidMicrophone } from 'react-icons/bi';
+import { AiOutlineClose } from 'react-icons/ai';
 import LineChart from '../../components/Charts/LineChart';
 import PieChart from '../../components/Charts/PieChart'
 import CountUp from "react-countup";
@@ -12,14 +13,12 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../../lib/fadein";
 import Upload2 from '../../components/Upload2';
 import Image from 'next/image';
+import Footer from '../../components/Footer';
+import Modal from "react-modal";
 
 export default function Dashboard() {
     const ChatFileTypes = ["txt"];
-    const { data: session } = useSession()
-
-    function handleSignOut() {
-        signOut()
-    }
+    const { data: session } = useSession();
 
     const [ref, inView] = useInView({
         threshold: 0.5,
@@ -38,11 +37,31 @@ export default function Dashboard() {
     ]);
 
     const handleResult = () => {
-        alert("Hello")
+        // alert("Hello")
+        openModal1();
     }
 
     const handleChat = (file) => {
         console.log(file);
+    };
+
+    const [modal1IsOpen, setIsOpen1] = useState(false);
+    const [modal2IsOpen, setIsOpen2] = useState(false);
+
+    const openModal1 = () => {
+        setIsOpen1(true);
+    };
+
+    const closeModal1 = () => {
+        setIsOpen1(false);
+    };
+
+    const openModal2 = () => {
+        setIsOpen2(true);
+    };
+
+    const closeModal2 = () => {
+        setIsOpen2(false);
     };
 
     return (
@@ -50,9 +69,9 @@ export default function Dashboard() {
             <Head>
                 <title>VoiceSentri | Dashboard</title>
             </Head>
-            <div className="relative bg-white shadow-sm shadow-cyan-800 w-full h-12 flex justify-center items-center rounded-md">
+            <div className=" bg-white shadow-sm shadow-cyan-800 w-full h-12 flex justify-center items-center rounded-md">
                 <h1 className='text-2xl md:text-3xl font-bold text-cyan-700'>Dashboard</h1>
-                <a href='..' className='absolute right-4 md:right-8 text-cyan-400 hover:text-cyan-600 hover:underline'>
+                <a href='..' className='absolute right-4 md:right-8 text-cyan-800 hover:text-cyan-600 hover:underline'>
                     Back
                 </a>
             </div>
@@ -163,7 +182,7 @@ export default function Dashboard() {
                 </div>
                 <div className='w-full md:w-1/2 bg-white shadow-sm shadow-cyan-800 flex justify-center items-center flex-col gap-2 p-4 md:h-96 rounded-md'>
                     <h1 className='text-cyan-600 font-bold text-2xl md:mt-12'>Sentiment Score of Last Chat Analyzed</h1>
-                    <PieChart chartData={pieData} />
+                    <PieChart position={"right"} chartData={pieData} />
                 </div>
             </div>
 
@@ -220,6 +239,89 @@ export default function Dashboard() {
                                     )}
                                 </tbody>
                             </table>
+                            <Modal
+                                ariaHideApp={false}
+                                className="w-full md:w-[85vw] h-screen md:h-auto md:mx-auto md:my-auto  text-center"
+                                isOpen={modal1IsOpen}
+                                onRequestClose={closeModal1}
+                                contentLabel="Upload or Capture an Image"
+
+                            >
+                                <div
+                                    id="modal"
+                                    className="w-full h-screen md:h-full rounded-md bg-cyan-100 shadow-lg shadow-gray-400 overflow-y-scroll relative p-4"
+                                >
+                                    <h1 className='text-cyan-600 font-bold text-2xl'>Chat Analyses Report</h1>
+                                    <div
+                                        className=" flex h-full w-full bg-white/50 items-center justify-center gap-2 p-4"
+                                    >
+                                        <div className='w-1/2 h-full flex flex-col justify-start items-center text-justify'>
+                                            <h3 className='text-gray-500 font-semibold text-xl'>Chat Summary</h3>
+                                            <p className='text-justify'>{chatResponse.openai_response}</p>
+                                        </div>
+
+                                        <div className='h-full w-1/2 justify-center items-center gap-4'>
+                                            <div className='w-full h-1/2 flex flex-col justify-start items-center self-start text-justify'>
+                                                <h3 className='text-gray-500 font-semibold text-xl'>Sentiment Score</h3>
+                                                <div className='w-full md:w-1/2'>
+                                                    <PieChart position={"top"} chartData={pieData} />
+                                                </div>
+                                            </div>
+                                            <div className='w-full h-1/2 flex flex-col justify-start items-center self-start text-justify'>
+                                                <h3 className='text-gray-500 font-semibold text-xl'>Key Words</h3>
+                                                <div className='w-full'>
+                                                    <table className="min-w-full bg-white border-b border-gray-300">
+                                                        <thead className="bg-cyan-100 text-cyan-700">
+                                                            <tr>
+                                                                <th className="w-1/2 text-center py-3 px-4 uppercase font-semibold text-md">
+                                                                    Positives
+                                                                </th>
+                                                                <th className="w-1/2 text-center py-3 px-4 uppercase font-semibold text-md">
+                                                                    Negatives
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody className="text-cyan-800 font-semibold">
+
+                                                            <tr className="bg-white">
+                                                                <td className="w-1/2 text-center py-3 px-4 text-green-600">{
+                                                                    chatResponse && Array.isArray(chatResponse?.positive_words) && chatResponse?.positive_words.length > 0 && chatResponse?.positive_words.map((data, index) => {
+                                                                        return (
+                                                                            <p key={index}>{data}</p>
+                                                                        )
+                                                                    }
+                                                                    )}
+                                                                </td>
+                                                                <td className="w-1/2 text-center py-3 px-4 text-red-500">{
+                                                                    chatResponse && Array.isArray(chatResponse?.negative_words) && chatResponse?.negative_words.length > 0 && chatResponse?.negative_words.map((data, index) => {
+                                                                        return (
+                                                                            <p key={index}>{data}</p>
+                                                                        )
+                                                                    }
+                                                                    )}
+                                                                </td>
+                                                            </tr>
+                                                            {Array.isArray(chatResponse.negative_words) && Array.isArray(chatResponse.positive_words) && chatResponse.positive_words.length === 0 && chatResponse.negative_words === 0(
+                                                                <tr>
+                                                                    <td colSpan={4} className="w-1/4 text-center text-cyan-600 py-3 px-4">No Positive or Negative Words Detected.</td>
+                                                                </tr>
+                                                            )}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="absolute top-2 right-2">
+                                            <button
+                                                className="border-none w-10/12 bg-gray-300 shadow-md shadow-white text-gray-600 p-2 rounded-md text-center flex justify-center items-center flex-col hover:shadow-md text-xl tracking-tight font-semibold hover:scale-105 hover:text-black transition-all duration-200"
+                                                onClick={closeModal1}
+                                            >
+                                                <AiOutlineClose className="w-4 h-4" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Modal>
                         </div>
                     </div>
 
@@ -241,6 +343,7 @@ export default function Dashboard() {
                     </motion.div>
                 </div>
             </div>
+            <Footer />
         </div>
     )
 }
@@ -266,8 +369,8 @@ export async function getServerSideProps({ req }) {
 const chartData = {
     labels: ['01', '02', '03'],
     datasets: [{
-        label: 'Hourly Steps Tracked',
-        data: [324, 5643, 664],
+        label: 'Hourly Call Sentiment Score',
+        data: [324, 563, 664],
         backgroundColor: [
             'rgba(21, 94, 117, 0.2)',
         ],

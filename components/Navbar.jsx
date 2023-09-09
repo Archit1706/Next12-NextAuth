@@ -4,6 +4,7 @@ import { fadeIn } from "../lib/fadein";
 import { GiBugleCall } from "react-icons/gi";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { signOut } from "next-auth/react";
 
 const Navbar = ({ session }) => {
     const router = useRouter();

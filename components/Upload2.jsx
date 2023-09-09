@@ -40,11 +40,7 @@ const Upload2 = () => {
             className={`${styles.container} flex flex-col justify-center items-center w-full gap-4 text-center relative`}
         >
             <div className="flex flex-col md:flex-row justify-center items-center gap-4 w-full">
-                <motion.div
-                    variants={fadeIn("up", 0.3)}
-                    initial="hidden"
-                    whileInView={"show"}
-                    viewport={{ once: true, amount: 0.4 }}
+                <div
                     className="group w-11/12 md:w-1/3 h-24 md:h-36 bg-white/60 shadow-cyan-100 text-cyan-600 hover:text-cyan-800 shadow-md border border-cyan-200 hover:border-cyan-400  px-2 rounded-md text-center flex justify-center items-center flex-col text-lg tracking-tight font-semibold hover:scale-105 transition-all duration-200 cursor-pointer gap-2"
                     onClick={openModal1}
                 >
@@ -52,13 +48,9 @@ const Upload2 = () => {
                         <BsFillImageFill className="h-6 w-6" />
                     </p>
                     Upload from your device
-                </motion.div>
+                </div>
 
-                <motion.div
-                    variants={fadeIn("up", 0.3)}
-                    initial="hidden"
-                    whileInView={"show"}
-                    viewport={{ once: true, amount: 0.4 }}
+                <div
                     className="group w-11/12 md:w-1/3 h-24 md:h-36 bg-white/60 shadow-cyan-100 text-cyan-600 hover:text-cyan-800 px-2 rounded-md text-center flex justify-center items-center flex-col shadow-md border border-cyan-200 hover:border-cyan-400 text-lg tracking-tight font-semibold hover:scale-105 transition-all duration-200 cursor-pointer gap-2"
                     onClick={openModal2}
                 >
@@ -66,7 +58,7 @@ const Upload2 = () => {
                         <BiSolidMicrophone className="h-6 w-6" />
                     </p>
                     Record from your Mic
-                </motion.div>
+                </div>
             </div>
 
             <Modal

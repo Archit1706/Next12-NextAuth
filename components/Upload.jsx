@@ -37,7 +37,7 @@ const Upload = () => {
     return (
         <section
             id="upload"
-            className={`${styles.container} flex flex-col justify-center items-center w-full gap-4 text-center bg-cyan-200 min-h-screen relative`}
+            className={`${styles.container} flex flex-col justify-center items-center w-full gap-4 text-center bg-cyan-100 min-h-screen relative`}
         >
             <motion.h1
                 variants={fadeIn("down", 0.3)}

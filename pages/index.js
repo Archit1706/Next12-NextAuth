@@ -48,7 +48,8 @@ const Home = () => {
 
       <Hero id="hero" next="upload" session={session} />
 
-      <Upload id="upload" next="features" session={session} />
+      {session && <Upload id="upload" next="features" session={session} />}
+      {/* <Upload id="upload" next="features" session={session} /> */}
       {/* <NextButton to="features" /> */}
       <Features id="features" next="contact" session={session} />
 
