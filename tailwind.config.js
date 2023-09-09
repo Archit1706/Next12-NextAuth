@@ -6,7 +6,14 @@ module.exports = {
     "./layout/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        offwhite: "#F0F0F0",
+        navy: "#213555",
+        seablue: "#4F709C",
+        gold: "#E5D283"
+      }
+    },
   },
   plugins: [],
 }
