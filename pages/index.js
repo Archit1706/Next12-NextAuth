@@ -5,7 +5,7 @@ import Features from '../components/Features';
 import Statistics from '../components/Statistics';
 import Packages from '../components/Packages';
 import Footer from '../components/Footer';
-import Navbar from '../components/Navbar';
+import Navbar2 from '../components/Navbar2';
 import Head from 'next/head';
 import Upload from '../components/Upload';
 
@@ -44,7 +44,7 @@ const Home = () => {
 
       </Head>
 
-      <Navbar id="navbar" session={session} />
+      <Navbar2 id="navbar" session={session} />
 
       <Hero id="hero" next="upload" session={session} />
 

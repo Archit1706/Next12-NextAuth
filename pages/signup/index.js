@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { useFormik } from 'formik';
 import { registerValidate } from '../../lib/validate'
 import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 
 export default function Register() {
 
@@ -33,9 +34,14 @@ export default function Register() {
         await fetch('/api/auth/signup', options)
             .then(res => res.json())
             .then((data) => {
+                // console.log(data);
                 toast.success("Registration Successfull!")
                 if (data) router.push('/login')
             })
+            .catch(err => {
+                console.log(err);
+                toast.error("Registration Failed!")
+            });
     }
 
     return (

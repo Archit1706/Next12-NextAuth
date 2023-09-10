@@ -36,6 +36,7 @@ export default function Login() {
             redirect: false,
             email: values.email,
             password: values.password,
+            role: "rookie",
             callbackUrl: "/"
         })
 
