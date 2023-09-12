@@ -49,11 +49,11 @@ const Statistics = () => {
                         <h2 className="title-font font-medium text-3xl text-cyan-800">
                             {inView ? (
                                 <CountUp
-                                    start={0.0}
-                                    end={1.2}
+                                    start={0}
+                                    end={12}
                                     duration={3}
-                                    decimals={1}
-                                    suffix={"K+"}
+                                    decimals={0}
+                                    suffix={""}
                                 />
                             ) : (
                                 0
@@ -68,10 +68,10 @@ const Statistics = () => {
                             {inView ? (
                                 <CountUp
                                     start={0.0}
-                                    end={30.4}
+                                    end={3.3}
                                     duration={3}
                                     decimals={1}
-                                    suffix={"L"}
+                                    suffix={"K"}
                                 />
                             ) : (
                                 0
@@ -86,7 +86,7 @@ const Statistics = () => {
                             {inView ? (
                                 <CountUp
                                     start={0.0}
-                                    end={98.43}
+                                    end={83.95}
                                     duration={3}
                                     decimals={1}
                                     suffix={"%"}

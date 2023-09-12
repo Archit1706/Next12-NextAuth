@@ -4,7 +4,7 @@ import styles from '../styles/Layout.module.css';
 
 export default function AuthLayout({ children }) {
     return (
-        <div className="flex min-h-screen p-6 bg-gradient-to-br from-cyan-200 via-cyan-400 to-cyan-600">
+        <div className="flex min-h-screen p-6 bg-gradient-to-br from-cyan-100 to-cyan-300">
             <div className="m-auto bg-slate-50 rounded-md w-3/4 h-3/4 grid lg:grid-cols-2">
                 <div className={styles.imgStyle}>
                     <div className={styles.cartoonImg}></div>
