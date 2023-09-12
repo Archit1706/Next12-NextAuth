@@ -126,10 +126,16 @@ export default function Dashboard({ session }) {
         triggerOnce: true,
     });
 
-    const handleResult = (event) => {
+    const handleResult1 = (event) => {
         // alert("Hello")
         console.log(event);
         openModal1();
+    }
+
+    const handleResult2 = (event) => {
+        // alert("Hello")
+        console.log(event);
+        openModal2();
     }
 
     const handleChat = async (file) => {
@@ -371,7 +377,11 @@ export default function Dashboard({ session }) {
                                                         }
                                                     </td>
                                                     <td className="w-1/4 text-center py-3 px-4">
-                                                        <button key={data._id} className='border border-cyan-700 p-2 text-cyan-600 font-semibold hover:bg-cyan-700 hover:text-cyan-400 transition duration-300 rounded-md ease-in-out' onClick={handleResult}>
+                                                        <button
+                                                            key={data._id}
+                                                            className='border border-cyan-700 p-2 text-cyan-600 font-semibold hover:bg-cyan-700 hover:text-cyan-400 transition duration-300 rounded-md ease-in-out'
+                                                            onClick={data.sentimentType == "audio" ? handleResult2 : handleResult1}
+                                                        >
                                                             Result
                                                         </button>
                                                     </td>
@@ -485,7 +495,7 @@ export default function Dashboard({ session }) {
                                 </Modal>
                                 <Modal
                                     ariaHideApp={false}
-                                    className="w-full md:w-[90vw] h-full md:mx-auto md:my-auto  text-center pt-6"
+                                    className="w-full md:w-1/2 h-full md:mx-auto md:my-auto  text-center pt-6"
                                     isOpen={modal2IsOpen}
                                     onRequestClose={closeModal2}
                                     contentLabel="Upload or Capture an Image"
@@ -494,20 +504,20 @@ export default function Dashboard({ session }) {
                                     {callResponse ? (
                                         <div
                                             id="modal"
-                                            className="w-full h-1/2 rounded-md bg-cyan-100 shadow-lg shadow-gray-400 overflow-y-scroll relative p-4"
+                                            className="w-full h-auto rounded-md bg-cyan-100 shadow-lg shadow-gray-400 relative p-4"
                                         >
                                             <h1 className='text-cyan-600 font-bold text-2xl'>Call Sentiment Analysis</h1>
                                             <div
                                                 className=" flex h-full w-full bg-white/50 items-center justify-center gap-2 md:gap-4 p-4"
                                             >
-                                                <div className='w-1/2 h-full flex flex-col justify-start items-center text-justify gap-4 text-sm'>
-                                                    <h3 className='text-gray-500 font-semibold text-xl'>Classified Sentiment</h3>
-                                                    <p className='text-justify'>{callResponse.emotion + emotions[callResponse.emotion]}</p>
+                                                <div className='w-1/2 h-full flex flex-col justify-start items-center text-center gap-4 text-sm'>
+                                                    <h3 className='text-gray-500 font-semibold text-xl'>Classified Audio Sentiment</h3>
+                                                    <p className='text-justify text-xl'>{callResponse.emotion + " " + emotions[callResponse.emotion]}</p>
                                                 </div>
                                                 <div className="absolute top-2 right-2">
                                                     <button
                                                         className="border-none w-10/12 bg-gray-300 shadow-md shadow-white text-gray-600 p-2 rounded-md text-center flex justify-center items-center flex-col hover:shadow-md text-xl tracking-tight font-semibold hover:scale-105 hover:text-black transition-all duration-200"
-                                                        onClick={closeModal1}
+                                                        onClick={closeModal2}
                                                     >
                                                         <AiOutlineClose className="w-4 h-4" />
                                                     </button>

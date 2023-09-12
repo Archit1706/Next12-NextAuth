@@ -36,10 +36,13 @@ const Upload2 = () => {
         formData.append("file", file);
 
         try {
-            const response = await fetch("your-backend-api-url", {
-                method: "POST",
-                body: formData,
-            });
+            const response = await fetch(
+                "https://sih-node-backend.architrathod1.repl.co/",
+                {
+                    method: "POST",
+                    body: formData,
+                }
+            );
 
             if (response.ok) {
                 // Assuming the server responds with JSON data
