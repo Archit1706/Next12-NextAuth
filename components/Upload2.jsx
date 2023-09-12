@@ -10,7 +10,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import AudioRecord from "./AudioRecord";
 
 const Upload2 = () => {
-    const fileTypes = ["mp3", "wav", "ogg", "m4a", "aac", "flac", "wma"];
+    const fileTypes = ["wav"];
     const [modal1IsOpen, setIsOpen1] = useState(false);
     const [modal2IsOpen, setIsOpen2] = useState(false);
 
@@ -119,7 +119,7 @@ const Upload2 = () => {
                     </div>
                 </motion.div>
             </Modal>
-            <Modal
+            {/* <Modal
                 ariaHideApp={false}
                 className="aspect-square w-screen md:h-[512px] md:w-[512px] md:mx-auto md:my-auto flex items-center justify-center"
                 isOpen={modal2IsOpen}
@@ -146,7 +146,7 @@ const Upload2 = () => {
                         </div>
                     </div>
                 </motion.div>
-            </Modal>
+            </Modal> */}
         </div>
     );
 };

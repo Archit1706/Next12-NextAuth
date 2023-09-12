@@ -24,6 +24,7 @@ export default function Dashboard({ session }) {
     const router = useRouter();
     const { id } = router.query;
     const [chatResponse, setChatResponse] = useState(chatResponseSample);
+    const [callResponse, setCallResponse] = useState(callResponseSample);
 
     const [reportData, setReportData] = useState([
         // { date: '01/01/2021', time: '12:00', sentimentType: 'Audio', result: 'Good' },
@@ -132,6 +133,7 @@ export default function Dashboard({ session }) {
     }
 
     const handleChat = async (file) => {
+        console.log(file)
         const formData = new FormData();
         formData.append('input_file', file);
 
@@ -261,23 +263,7 @@ export default function Dashboard({ session }) {
                 <div className='w-full h-full flex justify-center items-center flex-col md:flex-row gap-2 md:gap-4'>
 
                     {/* calls */}
-                    <div className='hidden md:block w-full md:w-1/3 md:h-80 bg-white shadow-sm shadow-cyan-800 gap-2 p-4 rounded-md'>
 
-                        <motion.div
-                            variants={fadeIn("down", 0.4)}
-                            initial="hidden"
-                            whileInView={"show"}
-                            viewport={{ once: true, amount: 0.4 }}
-                            className="w-full h-full"
-                        >
-                            <Image
-                                src="/assets/dash.svg"
-                                width={300}
-                                height={300}
-                                alt="Hero Image"
-                            />
-                        </motion.div>
-                    </div>
 
                     <div className='w-full md:w-1/3 md:h-80 bg-white shadow-sm shadow-cyan-800 flex md:justify-between justify-center items-center flex-col gap-2 p-4 rounded-md'>
 
@@ -304,6 +290,24 @@ export default function Dashboard({ session }) {
                             classes="h-full w-full border-2 border-gray-300 text-cyan-600 border-dashed  rounded-md"
                         />
                         <h3 className='text-sm text-gray-500'>Note:  Your chat is not saved but the results are saved for your future reference.</h3>
+                    </div>
+
+                    <div className='hidden md:block w-full md:w-1/3 md:h-80 bg-white shadow-sm shadow-cyan-800 gap-2 p-4 rounded-md'>
+
+                        <motion.div
+                            variants={fadeIn("down", 0.4)}
+                            initial="hidden"
+                            whileInView={"show"}
+                            viewport={{ once: true, amount: 0.4 }}
+                            className="w-full h-full"
+                        >
+                            <Image
+                                src="/assets/dash.svg"
+                                width={300}
+                                height={300}
+                                alt="Hero Image"
+                            />
+                        </motion.div>
                     </div>
                 </div>
 
@@ -347,6 +351,7 @@ export default function Dashboard({ session }) {
                                     </thead>
                                     <tbody className="text-cyan-800 font-semibold">
                                         {Array.isArray(formattedReportData) && formattedReportData.length > 0 && formattedReportData.map((data, index) => {
+                                            // console.log(data.sentimentType)
                                             return (
                                                 <tr key={index} className={index % 2 == 0 ? "bg-white" : "bg-cyan-50"}>
                                                     <td className="w-1/4 text-center py-3 px-4">
@@ -358,14 +363,15 @@ export default function Dashboard({ session }) {
                                                         {data.createdAt_Time}
                                                     </td>
                                                     <td className="w-1/4 text-center py-3 px-4 font-normal">
-                                                        {data.sentimentType === 'Audio' ? (
+                                                        {data.sentimentType == 'audio' &&
                                                             <span className='bg-cyan-800 text-cyan-400 rounded-full px-2 py-1'>{data.sentimentType}</span>
-                                                        ) : (
+                                                        }
+                                                        {data.sentimentType == 'chat' &&
                                                             <span className='bg-cyan-600 text-cyan-200 rounded-full px-2 py-1'>{data.sentimentType}</span>
-                                                        )}
+                                                        }
                                                     </td>
                                                     <td className="w-1/4 text-center py-3 px-4">
-                                                        <button className='border border-cyan-700 p-2 text-cyan-600 font-semibold hover:bg-cyan-700 hover:text-cyan-400 transition duration-300 rounded-md ease-in-out' onClick={handleResult}>
+                                                        <button key={data._id} className='border border-cyan-700 p-2 text-cyan-600 font-semibold hover:bg-cyan-700 hover:text-cyan-400 transition duration-300 rounded-md ease-in-out' onClick={handleResult}>
                                                             Result
                                                         </button>
                                                     </td>
@@ -379,106 +385,148 @@ export default function Dashboard({ session }) {
                                         )}
                                     </tbody>
                                 </table>
-                                <div className="modal-print-content">
-                                    <Modal
-                                        ariaHideApp={false}
-                                        className="w-full md:w-[90vw] h-full md:mx-auto md:my-auto  text-center pt-6"
-                                        isOpen={modal1IsOpen}
-                                        onRequestClose={closeModal1}
-                                        contentLabel="Upload or Capture an Image"
-                                    // id="modal"
-                                    >
-                                        {chatResponse ? (
+                                <Modal
+                                    ariaHideApp={false}
+                                    className="w-full md:w-[90vw] h-full md:mx-auto md:my-auto  text-center pt-6"
+                                    isOpen={modal1IsOpen}
+                                    onRequestClose={closeModal1}
+                                    contentLabel="Upload or Capture an Image"
+                                // id="modal"
+                                >
+                                    {chatResponse ? (
+                                        <div
+                                            id="modal"
+                                            className="w-full h-[95vh] rounded-md bg-cyan-100 shadow-lg shadow-gray-400 overflow-y-scroll relative p-4"
+                                        >
+                                            <h1 className='text-cyan-600 font-bold text-2xl'>Chat Analyses Report</h1>
                                             <div
-                                                id="modal"
-                                                className="w-full h-[95vh] rounded-md bg-cyan-100 shadow-lg shadow-gray-400 overflow-y-scroll relative p-4"
+                                                className=" flex h-full w-full bg-white/50 items-center justify-center gap-2 md:gap-4 p-4"
                                             >
-                                                <h1 className='text-cyan-600 font-bold text-2xl'>Chat Analyses Report</h1>
-                                                <div
-                                                    className=" flex h-full w-full bg-white/50 items-center justify-center gap-2 md:gap-4 p-4"
-                                                >
-                                                    <div className='w-1/2 h-full flex flex-col justify-start items-center text-justify gap-4 text-sm'>
-                                                        <h3 className='text-gray-500 font-semibold text-xl'>Chat Duration</h3>
-                                                        <p className='text-justify'>{chatResponse.start_date} - {chatResponse.end_date}</p>
-                                                        <h3 className='text-gray-500 font-semibold text-xl'>Chat Summary</h3>
-                                                        <p className='text-justify'>{chatResponse.openai_response}</p>
-                                                    </div>
+                                                <div className='w-1/2 h-full flex flex-col justify-start items-center text-justify gap-4 text-sm'>
+                                                    <h3 className='text-gray-500 font-semibold text-xl'>Chat Duration</h3>
+                                                    <p className='text-justify'>{chatResponse.start_date} - {chatResponse.end_date}</p>
+                                                    <h3 className='text-gray-500 font-semibold text-xl'>Chat Summary</h3>
+                                                    <p className='text-justify'>{chatResponse.openai_response}</p>
+                                                </div>
 
-                                                    <div className='h-full w-1/2 justify-center items-center gap-4 md:gap-8 '>
-                                                        <div className='w-full h-1/2 flex flex-col justify-start items-center self-start text-justify mb-4 md:mb-10'>
-                                                            <h3 className='text-gray-500 font-semibold text-xl'>Sentiment Score</h3>
-                                                            <div className='w-full md:w-1/2'>
-                                                                <PieChart position={"top"} chartData={pieData} />
-                                                            </div>
+                                                <div className='h-full w-1/2 justify-center items-center gap-4 md:gap-8 '>
+                                                    <div className='w-full h-1/2 flex flex-col justify-start items-center self-start text-justify mb-4 md:mb-10'>
+                                                        <h3 className='text-gray-500 font-semibold text-xl'>Sentiment Score</h3>
+                                                        <div className='w-full md:w-1/2'>
+                                                            <PieChart position={"top"} chartData={pieData} />
                                                         </div>
-                                                        <div className='w-full h-1/2 flex flex-col justify-start items-center self-start text-justify'>
-                                                            <h3 className='text-gray-500 font-semibold text-xl'>Key Words</h3>
-                                                            <div className='w-full'>
-                                                                <table className="min-w-full bg-white border-b border-gray-300">
-                                                                    <thead className="bg-cyan-100 text-cyan-700">
+                                                    </div>
+                                                    <div className='w-full h-1/2 flex flex-col justify-start items-center self-start text-justify'>
+                                                        <h3 className='text-gray-500 font-semibold text-xl'>Key Words</h3>
+                                                        <div className='w-full'>
+                                                            <table className="min-w-full bg-white border-b border-gray-300">
+                                                                <thead className="bg-cyan-100 text-cyan-700">
+                                                                    <tr>
+                                                                        <th className="w-1/2 text-center py-3 px-4 uppercase font-semibold text-md">
+                                                                            Positives
+                                                                        </th>
+                                                                        <th className="w-1/2 text-center py-3 px-4 uppercase font-semibold text-md">
+                                                                            Negatives
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody className="text-cyan-800 font-semibold">
+
+                                                                    <tr className="bg-white">
+                                                                        <td className="w-1/2 text-center py-3 px-4 text-green-600">{
+                                                                            chatResponse && Array.isArray(chatResponse?.positive_words) && chatResponse?.positive_words.length > 0 && chatResponse?.positive_words.map((data, index) => {
+                                                                                return (
+                                                                                    <p key={index}>{data}</p>
+                                                                                )
+                                                                            }
+                                                                            )}
+                                                                        </td>
+                                                                        <td className="w-1/2 text-center py-3 px-4 text-red-500">{
+                                                                            chatResponse && Array.isArray(chatResponse?.negative_words) && chatResponse?.negative_words.length > 0 && chatResponse?.negative_words.map((data, index) => {
+                                                                                return (
+                                                                                    <p key={index}>{data}</p>
+                                                                                )
+                                                                            }
+                                                                            )}
+                                                                        </td>
+                                                                    </tr>
+                                                                    {Array.isArray(chatResponse.negative_words) && Array.isArray(chatResponse.positive_words) && chatResponse.positive_words.length === 0 && chatResponse.negative_words.length === 0(
                                                                         <tr>
-                                                                            <th className="w-1/2 text-center py-3 px-4 uppercase font-semibold text-md">
-                                                                                Positives
-                                                                            </th>
-                                                                            <th className="w-1/2 text-center py-3 px-4 uppercase font-semibold text-md">
-                                                                                Negatives
-                                                                            </th>
+                                                                            <td colSpan={4} className="w-1/4 text-center text-cyan-600 py-3 px-4">No Positive or Negative Words Detected.</td>
                                                                         </tr>
-                                                                    </thead>
-                                                                    <tbody className="text-cyan-800 font-semibold">
-
-                                                                        <tr className="bg-white">
-                                                                            <td className="w-1/2 text-center py-3 px-4 text-green-600">{
-                                                                                chatResponse && Array.isArray(chatResponse?.positive_words) && chatResponse?.positive_words.length > 0 && chatResponse?.positive_words.map((data, index) => {
-                                                                                    return (
-                                                                                        <p key={index}>{data}</p>
-                                                                                    )
-                                                                                }
-                                                                                )}
-                                                                            </td>
-                                                                            <td className="w-1/2 text-center py-3 px-4 text-red-500">{
-                                                                                chatResponse && Array.isArray(chatResponse?.negative_words) && chatResponse?.negative_words.length > 0 && chatResponse?.negative_words.map((data, index) => {
-                                                                                    return (
-                                                                                        <p key={index}>{data}</p>
-                                                                                    )
-                                                                                }
-                                                                                )}
-                                                                            </td>
-                                                                        </tr>
-                                                                        {Array.isArray(chatResponse.negative_words) && Array.isArray(chatResponse.positive_words) && chatResponse.positive_words.length === 0 && chatResponse.negative_words.length === 0(
-                                                                            <tr>
-                                                                                <td colSpan={4} className="w-1/4 text-center text-cyan-600 py-3 px-4">No Positive or Negative Words Detected.</td>
-                                                                            </tr>
-                                                                        )}
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
+                                                                    )}
+                                                                </tbody>
+                                                            </table>
                                                         </div>
-                                                    </div>
-                                                    <div className="absolute top-2 right-2">
-                                                        <button
-                                                            className="border-none w-10/12 bg-gray-300 shadow-md shadow-white text-gray-600 p-2 rounded-md text-center flex justify-center items-center flex-col hover:shadow-md text-xl tracking-tight font-semibold hover:scale-105 hover:text-black transition-all duration-200"
-                                                            onClick={closeModal1}
-                                                        >
-                                                            <AiOutlineClose className="w-4 h-4" />
-                                                        </button>
                                                     </div>
                                                 </div>
-                                                <button
-                                                    className="m-4 border border-cyan-700 rounded-md px-4 py-2 text-cyan-700 font-semibold hover:bg-cyan-700 hover:text-cyan-100 transition duration-300 ease-in-out"
-                                                    onClick={handlePrint}
-                                                >
-                                                    Print
-                                                </button>
+                                                <div className="absolute top-2 right-2">
+                                                    <button
+                                                        className="border-none w-10/12 bg-gray-300 shadow-md shadow-white text-gray-600 p-2 rounded-md text-center flex justify-center items-center flex-col hover:shadow-md text-xl tracking-tight font-semibold hover:scale-105 hover:text-black transition-all duration-200"
+                                                        onClick={closeModal1}
+                                                    >
+                                                        <AiOutlineClose className="w-4 h-4" />
+                                                    </button>
+                                                </div>
                                             </div>
-                                        ) : (
-                                            <p>
+                                            <button
+                                                className="m-4 border border-cyan-700 rounded-md px-4 py-2 text-cyan-700 font-semibold hover:bg-cyan-700 hover:text-cyan-100 transition duration-300 ease-in-out"
+                                                onClick={handlePrint}
+                                            >
+                                                Print
+                                            </button>
+                                        </div>
+                                    ) : (
+                                        <p>
 
-                                                {"loading..."}
-                                            </p>
-                                        )}
-                                    </Modal>
-                                </div>
+                                            {"loading..."}
+                                        </p>
+                                    )}
+                                </Modal>
+                                <Modal
+                                    ariaHideApp={false}
+                                    className="w-full md:w-[90vw] h-full md:mx-auto md:my-auto  text-center pt-6"
+                                    isOpen={modal2IsOpen}
+                                    onRequestClose={closeModal2}
+                                    contentLabel="Upload or Capture an Image"
+                                // id="modal"
+                                >
+                                    {callResponse ? (
+                                        <div
+                                            id="modal"
+                                            className="w-full h-1/2 rounded-md bg-cyan-100 shadow-lg shadow-gray-400 overflow-y-scroll relative p-4"
+                                        >
+                                            <h1 className='text-cyan-600 font-bold text-2xl'>Call Sentiment Analysis</h1>
+                                            <div
+                                                className=" flex h-full w-full bg-white/50 items-center justify-center gap-2 md:gap-4 p-4"
+                                            >
+                                                <div className='w-1/2 h-full flex flex-col justify-start items-center text-justify gap-4 text-sm'>
+                                                    <h3 className='text-gray-500 font-semibold text-xl'>Classified Sentiment</h3>
+                                                    <p className='text-justify'>{callResponse.emotion + emotions[callResponse.emotion]}</p>
+                                                </div>
+                                                <div className="absolute top-2 right-2">
+                                                    <button
+                                                        className="border-none w-10/12 bg-gray-300 shadow-md shadow-white text-gray-600 p-2 rounded-md text-center flex justify-center items-center flex-col hover:shadow-md text-xl tracking-tight font-semibold hover:scale-105 hover:text-black transition-all duration-200"
+                                                        onClick={closeModal1}
+                                                    >
+                                                        <AiOutlineClose className="w-4 h-4" />
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <button
+                                                className="m-4 border border-cyan-700 rounded-md px-4 py-2 text-cyan-700 font-semibold hover:bg-cyan-700 hover:text-cyan-100 transition duration-300 ease-in-out"
+                                                onClick={handlePrint}
+                                            >
+                                                Print
+                                            </button>
+                                        </div>
+                                    ) : (
+                                        <p>
+
+                                            {"loading..."}
+                                        </p>
+                                    )}
+                                </Modal>
                             </div>
                         </div>
 
@@ -600,6 +648,10 @@ const chatResponseSample = {
     ],
     "start_date": "12/03/2022, 20:58",
     "end_date": "27/04/2022, 19:08"
+}
+
+const callResponseSample = {
+    "emotion": "disgust"
 }
 
 const emotions = {
