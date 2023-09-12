@@ -3,7 +3,7 @@ import styles from "../styles/Home.module.css";
 import Modal from "react-modal";
 import { motion } from "framer-motion";
 import { fadeIn } from "../lib/fadein";
-import { BsFillImageFill } from "react-icons/bs";
+import { BsFillImageFill, BsFiletypeMp3 } from "react-icons/bs";
 import { BiSolidMicrophone } from "react-icons/bi";
 import { FileUploader } from "react-drag-drop-files";
 import { AiOutlineClose } from "react-icons/ai";
@@ -30,8 +30,30 @@ const Upload2 = () => {
         setIsOpen2(false);
     };
 
-    const handleChange = (file) => {
+    const handleChange = async (file) => {
         console.log(file);
+        const formData = new FormData();
+        formData.append("file", file);
+
+        try {
+            const response = await fetch("your-backend-api-url", {
+                method: "POST",
+                body: formData,
+            });
+
+            if (response.ok) {
+                // Assuming the server responds with JSON data
+                const data = await response.json();
+                setCallResponse(data);
+                console.log("Response:", data);
+            } else {
+                console.error("File upload failed.");
+                // Handle error as needed
+            }
+        } catch (error) {
+            console.error("Error uploading file:", error);
+            // Handle error as needed
+        }
     };
 
     return (
@@ -41,16 +63,16 @@ const Upload2 = () => {
         >
             <div className="flex flex-col md:flex-row justify-center items-center gap-4 w-full">
                 <div
-                    className="group w-11/12 md:w-1/3 h-24 md:h-36 bg-white/60 shadow-cyan-100 text-cyan-600 hover:text-cyan-800 shadow-md border border-cyan-200 hover:border-cyan-400  px-2 rounded-md text-center flex justify-center items-center flex-col text-lg tracking-tight font-semibold hover:scale-105 transition-all duration-200 cursor-pointer gap-2"
+                    className="group w-11/12 md:w-1/2 h-24 md:h-36 bg-white/60 shadow-cyan-100 text-cyan-600 hover:text-cyan-800 shadow-md border border-cyan-200 hover:border-cyan-400  px-2 rounded-md text-center flex justify-center items-center flex-col text-lg tracking-tight font-semibold hover:scale-105 transition-all duration-200 cursor-pointer gap-2"
                     onClick={openModal1}
                 >
                     <p className="group-hover:animate-bounce">
-                        <BsFillImageFill className="h-6 w-6" />
+                        <BsFiletypeMp3 className="h-6 w-6" />
                     </p>
                     Upload from your device
                 </div>
 
-                <div
+                {/* <div
                     className="group w-11/12 md:w-1/3 h-24 md:h-36 bg-white/60 shadow-cyan-100 text-cyan-600 hover:text-cyan-800 px-2 rounded-md text-center flex justify-center items-center flex-col shadow-md border border-cyan-200 hover:border-cyan-400 text-lg tracking-tight font-semibold hover:scale-105 transition-all duration-200 cursor-pointer gap-2"
                     onClick={openModal2}
                 >
@@ -58,7 +80,7 @@ const Upload2 = () => {
                         <BiSolidMicrophone className="h-6 w-6" />
                     </p>
                     Record from your Mic
-                </div>
+                </div> */}
             </div>
 
             <Modal

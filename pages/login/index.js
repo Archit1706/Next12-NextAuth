@@ -25,27 +25,45 @@ export default function Login() {
         validate: login_validate,
         onSubmit
     })
-
     /**
      * haleykennedy@gmail.com
      * admin123
      */
 
     async function onSubmit(values) {
-        const status = await signIn('credentials', {
-            redirect: false,
-            email: values.email,
-            password: values.password,
-            role: "rookie",
-            callbackUrl: "/"
-        })
+        // const status = await signIn('credentials', {
+        //     redirect: false,
+        //     email: values.email,
+        //     password: values.password,
+        //     role: "rookie",
+        //     callbackUrl: "/"
+        // })
 
-        if (status.ok) {
-            toast.success("Login Successfull!")
-            router.push(status.url)
+        // if (status.ok) {
+        //     toast.success("Login Successfull!")
+        //     router.push(status.url)
+        // }
+        // else {
+        //     toast.error("Invalid Credentials.")
+        // }
+
+        const status = await fetch(`https://sih-node-backend.architrathod1.repl.co/user/userlogin`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(values)
+        });
+        if (status.status === 400) {
+            toast.error("Invalid Credentials.");
         }
         else {
-            toast.error("Invalid Credentials.")
+            const data = await status.json();
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('username', data.name);
+            localStorage.setItem('userid', data.userid);
+            toast.success("Login Successfull!");
+            router.push(`/dashboard?id=${data.userid}`);
         }
 
     }
@@ -69,7 +87,7 @@ export default function Login() {
 
             <section className='w-3/4 mx-auto flex flex-col gap-10'>
                 <div className="title">
-                    <h1 className='text-gray-800 text-4xl font-bold py-4'>Login</h1>
+                    <h1 className='text-gray-800 text-4xl font-bold py-4'>Login For Managers    </h1>
                     <p className='w-3/4 mx-auto text-gray-400'>Unlock Sentimental Secrets Behind Your Calls.</p>
                 </div>
 

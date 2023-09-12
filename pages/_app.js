@@ -1,26 +1,36 @@
-import '../styles/globals.css'
-import { SessionProvider } from 'next-auth/react'
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import '../styles/globals.css'
+// // import { SessionProvider } from 'next-auth/react'
 
-function MyApp({ Component, pageProps }) {
-  return (
-    <SessionProvider session={pageProps.session}>
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-      <Component {...pageProps} />
-    </SessionProvider>
-  )
+// function MyApp({ Component, pageProps }) {
+//   return (
+//     // <SessionProvider session={pageProps.session}>
+//     <>
+//       <Component {...pageProps} />
+//       {/* </SessionProvider> */}
+//     </>
+//   )
+// }
+
+// export default MyApp
+
+import React, { useState } from 'react';
+import '../styles/globals.css';
+
+function MyApp({ Component, pageProps, session }) {
+  return <Component {...pageProps} session={session} />;
 }
 
-export default MyApp
+MyApp.getInitialProps = async ({ Component, ctx }) => {
+  // Retrieve the token from local storage
+  const session = typeof window !== 'undefined' && localStorage.getItem('token') ? localStorage.getItem('token') : '';
+
+  // Call getInitialProps on the child component if it exists
+  const pageProps = Component.getInitialProps
+    ? await Component.getInitialProps(ctx)
+    : {};
+
+  return { pageProps, session };
+};
+
+export default MyApp;
+

@@ -10,12 +10,28 @@ import { AiOutlineClose } from "react-icons/ai";
 import { FileUploader } from "react-drag-drop-files";
 
 const Navbar = ({ session }) => {
-    console.log(session);
+    // console.log(session);
     const router = useRouter();
+
+    // const [session, setSession] = useState(
+    //     typeof window !== "undefined" && localStorage?.getItem("token")
+    //         ? localStorage.getItem("token")
+    //         : ""
+    // );
 
     const [nav, setNav] = useState(false);
 
     useEffect(() => {
+        // const getToken = async () => {
+        //     if (
+        //         typeof window !== "undefined" &&
+        //         localStorage?.getItem("token")
+        //     ) {
+        //         setSession(localStorage.getItem("token"));
+        //     }
+        // };
+        // getToken();
+
         const handleShadow = () => {
             if (typeof window !== "undefined" && window.scrollY >= 10) {
                 setNav(true);
@@ -28,6 +44,8 @@ const Navbar = ({ session }) => {
             window.addEventListener("scroll", handleShadow);
         }
 
+        // console.log(session);
+
         return () => {
             if (typeof window !== "undefined") {
                 window.removeEventListener("scroll", handleShadow);
@@ -36,7 +54,9 @@ const Navbar = ({ session }) => {
     }, []);
 
     function handleSignOut() {
-        signOut();
+        // signOut();
+        localStorage.removeItem("token");
+        router.push("/");
     }
 
     function handleLogin() {
@@ -132,7 +152,7 @@ const Navbar = ({ session }) => {
             <div>
                 {session ? (
                     <button
-                        className="m-4 border border-cyan-700 rounded-md px-4 py-2 text-cyan-700 font-semibold hover:bg-cyan-700 hover:text-cyan-100 transition duration-300 ease-in-out"
+                        className="border-2 border-cyan-700 rounded-md px-4 py-2 text-cyan-700 font-semibold hover:bg-cyan-700 hover:text-cyan-100 transition duration-300 ease-in-out"
                         onClick={handleSignOut}
                     >
                         Logout

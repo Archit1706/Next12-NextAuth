@@ -7,10 +7,12 @@ export default async function handler(req, res) {
 
     if (req.method === 'POST') {
 
+        // console.log(req.body);
+
         if (!req.body) return res.status(404).json({ error: "Dont't have the user ID.", success: false });
         const { userId } = req.body;
 
-        const chatsAndCalls = await Reports.find({ where: { userId } });
+        const chatsAndCalls = await Reports.find({ userId: userId });
         if (!chatsAndCalls) return res.status(404).json({ message: "No chats and calls found...!", success: false });
 
         const chats = chatsAndCalls.filter(chat => chat.sentimentType === "chat");

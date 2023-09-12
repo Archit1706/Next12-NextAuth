@@ -1,6 +1,7 @@
-import React from 'react';
-import { getSession, useSession } from 'next-auth/react';
+import React, { useState } from 'react';
+// import { getSession, useSession } from 'next-auth/react';
 import Hero from '../components/Hero';
+import Articles from '../components/Articles';
 import Features from '../components/Features';
 import Statistics from '../components/Statistics';
 import Packages from '../components/Packages';
@@ -8,21 +9,15 @@ import Footer from '../components/Footer';
 import Navbar2 from '../components/Navbar2';
 import Head from 'next/head';
 import Upload from '../components/Upload';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-// import NextButton from '../components/NextButton';
-// import { useInView } from 'react-intersection-observer';
+const Home = ({ session }) => {
+  // const [session, setSession] = useState(typeof window !== "undefined" && localStorage?.getItem("token") ? localStorage.getItem('token') : "");
 
-const Home = () => {
-  const { data: session } = useSession();
-
-  // const [ref, inView] = useInView({
-  //   threshold: 0.5,
-  //   // triggerOnce: true,
-  // });
   return (
     <div>
       <Head>
-
         <title>VoiceCentri - Transforming calls into actionable feedback.</title>
         <meta name="title" content="VoiceCentri - Transforming calls into actionable feedback." />
         <meta name="description" content="Catalyze customer service excellence with our sentiment analysis platform, deciphering emotions and delivering actionable insights from incoming calls." />
@@ -38,19 +33,30 @@ const Home = () => {
         <meta property="twitter:title" content="VoiceCentri - Transforming calls into actionable feedback." />
         <meta property="twitter:description" content="Catalyze customer service excellence with our sentiment analysis platform, deciphering emotions and delivering actionable insights from incoming calls." />
         <meta property="twitter:image" content="https://voice-sentri.vercel.app/VoiceCentri.jpg" />
-
         {/* manifest */}
         <link rel="manifest" href="/manifest.json" />
-
       </Head>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
 
       <Navbar2 id="navbar" session={session} />
 
       <Hero id="hero" next="upload" session={session} />
 
-      {session && <Upload id="upload" next="features" session={session} />}
-      {/* <Upload id="upload" next="features" session={session} /> */}
-      {/* <NextButton to="features" /> */}
+      <Articles id="articles" next="upload" session={session} />
+
+      {/* {session && <Upload id="upload" next="features" session={session} />} */}
+
       <Features id="features" next="contact" session={session} />
 
       <Statistics id="statistics" next="packages" session={session} />
@@ -66,9 +72,29 @@ const Home = () => {
 export default Home;
 
 
-export async function getServerSideProps({ req }) {
-  const session = await getSession({ req });
-  return {
-    props: { session }
-  }
-}
+// export async function getServerSideProps({ req }) {
+//   // const session = await getSession({ req });
+//   // return {
+//   //   props: { session }
+//   // }
+//   if (typeof window !== "undefined" && localStorage?.getItem("token")) {
+//     const token = localStorage.getItem('token');
+//     const username = localStorage.getItem('username');
+//   }
+
+//   if (token == "undefined") {
+//     return {
+//       redirect: {
+//         destination: '/login',
+//         permanent: false
+//       }
+//     }
+//   }
+
+//   return {
+//     props: {
+//       token,
+//       username
+//     }
+//   }
+// }

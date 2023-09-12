@@ -11,14 +11,14 @@ import { toast } from 'react-toastify';
 
 export default function Register() {
 
-    const [show, setShow] = useState({ password: false, cpassword: false })
+    const [show, setShow] = useState({ password: false, confPassword: false })
     const router = useRouter()
     const formik = useFormik({
         initialValues: {
             username: '',
             email: '',
             password: '',
-            cpassword: ''
+            confPassword: ''
         },
         validate: registerValidate,
         onSubmit
@@ -31,17 +31,27 @@ export default function Register() {
             body: JSON.stringify(values)
         }
 
-        await fetch('/api/auth/signup', options)
-            .then(res => res.json())
-            .then((data) => {
-                // console.log(data);
-                toast.success("Registration Successfull!")
-                if (data) router.push('/login')
-            })
-            .catch(err => {
-                console.log(err);
-                toast.error("Registration Failed!")
-            });
+        // await fetch('/api/auth/signup', options)
+        //     .then(res => res.json())
+        //     .then((data) => {
+        //         // console.log(data);
+        //         toast.success("Registration Successfull!")
+        //         if (data) router.push('/login')
+        //     })
+        //     .catch(err => {
+        //         console.log(err);
+        //         toast.error("Registration Failed!")
+        //     });
+
+        const status = await fetch(`https://sih-node-backend.architrathod1.repl.co/user/userregister`, options)
+
+        if (status.status === 400) {
+            toast.error("Registration Failed!")
+        }
+        if (status.status === 200) {
+            toast.success("Registration Successfull!")
+            router.push('/login')
+        }
     }
 
     return (
@@ -98,19 +108,19 @@ export default function Register() {
                     </div>
                     {/* {formik.errors.password && formik.touched.password ? <span className='text-rose-500'>{formik.errors.password}</span> : <></>} */}
 
-                    <div className={`${styles.input_group} ${formik.errors.cpassword && formik.touched.cpassword ? 'border-rose-600' : ''}`}>
+                    <div className={`${styles.input_group} ${formik.errors.confPassword && formik.touched.confPassword ? 'border-rose-600' : ''}`}>
                         <input
-                            type={`${show.cpassword ? "text" : "password"}`}
-                            name='cpassword'
+                            type={`${show.confPassword ? "text" : "password"}`}
+                            name='confPassword'
                             placeholder='Confirm Password'
                             className={styles.input_text}
-                            {...formik.getFieldProps('cpassword')}
+                            {...formik.getFieldProps('confPassword')}
                         />
-                        <span className='icon flex items-center px-4' onClick={() => setShow({ ...show, cpassword: !show.cpassword })}>
+                        <span className='icon flex items-center px-4' onClick={() => setShow({ ...show, confPassword: !show.confPassword })}>
                             <HiFingerPrint size={25} />
                         </span>
                     </div>
-                    {/* {formik.errors.cpassword && formik.touched.cpassword ? <span className='text-rose-500'>{formik.errors.cpassword}</span> : <></>} */}
+                    {/* {formik.errors.confPassword && formik.touched.confPassword ? <span className='text-rose-500'>{formik.errors.confPassword}</span> : <></>} */}
 
                     {/* login buttons */}
                     <div className="input-button">
