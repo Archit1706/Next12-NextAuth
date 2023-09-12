@@ -56,6 +56,7 @@ const Articles = () => {
                                             <a
                                                 href={article.link}
                                                 target="_blank"
+                                                rel="noreferrer"
                                                 className="text-cyan-500 hover:text-cyan-600 inline-flex items-center md:mb-2 lg:mb-0 cursor-pointer font-medium"
                                             >
                                                 Learn More
