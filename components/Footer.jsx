@@ -8,7 +8,7 @@ const Footer = () => {
                 {/* <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
                     <GiBugleCall className="w-10 h-10 text-white p-2 bg-cyan-500 rounded-full" />
 
-                    <span className="ml-3 text-xl">Voice Centri</span>
+                    <span className="ml-3 text-xl">Voice Sentri</span>
                 </a> */}
                 <Link href="/">
                     <h1 className="text-2xl font-bold text-cyan-700">
