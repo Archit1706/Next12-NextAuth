@@ -3,7 +3,7 @@ import styles from "../styles/Home.module.css";
 import Modal from "react-modal";
 import { motion } from "framer-motion";
 import { fadeIn } from "../lib/fadein";
-import { BsFillImageFill, BsFiletypeMp3 } from "react-icons/bs";
+import { BsFillImageFill, BsFiletypeMp3, BsFiletypeWav } from "react-icons/bs";
 import { BiSolidMicrophone } from "react-icons/bi";
 import { FileUploader } from "react-drag-drop-files";
 import { AiOutlineClose } from "react-icons/ai";
@@ -44,7 +44,7 @@ const Upload2 = () => {
 
         try {
             const response = await fetch(
-                "https://3903-2409-40c0-100a-ef2d-6c25-13ff-e89b-17bb.ngrok-free.app/predict?userid=" +
+                "https://2ffd-2409-40c0-100a-ef2d-6c25-13ff-e89b-17bb.ngrok-free.app/predict?userid=" +
                     userId,
                 {
                     mode: "cors",
@@ -88,7 +88,7 @@ const Upload2 = () => {
                     onClick={openModal1}
                 >
                     <p className="group-hover:animate-bounce">
-                        <BsFiletypeMp3 className="h-6 w-6" />
+                        <BsFiletypeWav className="h-6 w-6" />
                     </p>
                     Upload from your device
                 </div>
