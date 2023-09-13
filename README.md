@@ -1,34 +1,100 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# VoiceSentri - Transforming Calls into Actionable Feedback
 
-## Getting Started
+<!-- [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/your-username/sentiment-analysis-helpdesk/blob/main/LICENSE) -->
 
-First, run the development server:
+## Table of Contents
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+-   [Introduction](#introduction)
+-   [Features](#features)
+-   [Demo](#demo)
+-   [Tech Stack](#tech-stack)
+-   [Installation](#installation)
+-   [Usage](#usage)
+<!-- -   [Contributing](#contributing)
+-   [License](#license)
+-   [Acknowledgments](#acknowledgments) -->
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Introduction
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+The Sentiment Analysis of Incoming Calls on Helpdesk project is a comprehensive solution tailored for analyzing the sentiment of incoming calls in helpdesks, call centers, and customer services. With the ever-increasing volume of customer interactions in these domains, understanding customer sentiments expressed during phone conversations is crucial for improving customer service delivery.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Features
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+-   **Dual Dashboards**: The project offers separate dashboards for rookies and managers, each with distinct access controls.
 
-## Learn More
+-   **Chat Analysis**: Analyze chat conversations to provide summaries, sentiment scores, and key positive and negative words. Users can specify date ranges for analysis.
 
-To learn more about Next.js, take a look at the following resources:
+-   **Voice or Audio Sentiment Analysis**: Utilize the Librosa model to classify voice recordings into one of seven different emotions, enhancing the depth of sentiment analysis.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+-   **Reporting**: Generate comprehensive reports and store the results in a MongoDB database for users to review whenever necessary, facilitating data-driven decision-making.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Demo
 
-## Deploy on Vercel
+For a live demo of the project, visit [Demo Link](https://your-demo-link.com).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Tech Stack
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+-   Frontend:
+    -   [Next.js](https://nextjs.org/): React framework for building user interfaces.
+    -   [Tailwind CSS](https://tailwindcss.com/): Utility-first CSS framework.
+-   Backend:
+
+    -   [Node.js](https://nodejs.org/): JavaScript runtime for server-side development.
+    -   [FastAPI](https://fastapi.tiangolo.com/): Modern, fast (high-performance) web framework for building APIs.
+
+-   Sentiment Analysis:
+
+    -   [Librosa](https://librosa.org/): Python library for audio and music analysis.
+    -   [Transformers](https://huggingface.co/transformers/): State-of-the-art natural language processing models.
+
+-   Data Sources:
+    -   Voice Dataset
+    -   WhatsApp Chats
+
+## Installation
+
+1. Clone the repository:
+
+    ```bash
+    git clone https://github.com/Archit1706/VoiceSentri.git
+    ```
+
+2. Install dependencies for both the frontend and backend:
+
+    ```bash
+    # Navigate to the frontend directory
+    cd frontend
+    npm install
+
+    # Navigate to the backend directory
+    cd ../backend
+    pip install -r requirements.txt
+    ```
+
+3. Configuration:
+
+    - Set up environment variables and configuration files as needed for your development and production environments.
+
+4. Start the development server:
+
+    ```bash
+    # In the frontend directory
+    npm run dev
+
+    # In the backend directory
+    uvicorn main:app --reload
+    ```
+
+## Usage
+
+-   Access the application by visiting the appropriate URL in your browser.
+-   Log in with your credentials to access the dashboard.
+-   Explore the chat analysis, voice sentiment analysis, and reporting features based on your user role.
+
+<!-- ## Contributing
+
+Contributions are welcome! Please follow our [Contributing Guidelines](CONTRIBUTING.md) to get started. -->
+<!--
+## License
+
+This project is licensed under the [MIT License](LICENSE). -->
