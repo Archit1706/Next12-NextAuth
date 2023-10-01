@@ -62,18 +62,20 @@ const Features = () => {
                                     href="/login"
                                     className="mt-3 cursor-pointer text-white group-hover:text-gray-200 inline-flex items-center"
                                 >
-                                    Learn More
-                                    <svg
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        className="w-4 h-4 ml-2"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path d="M5 12h14M12 5l7 7-7 7" />
-                                    </svg>
+                                    <>
+                                        Learn More
+                                        <svg
+                                            fill="none"
+                                            stroke="currentColor"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            className="w-4 h-4 ml-2"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path d="M5 12h14M12 5l7 7-7 7" />
+                                        </svg>
+                                    </>
                                 </Link>
                             </div>
                         </div>
@@ -104,18 +106,20 @@ const Features = () => {
                                     href="/login"
                                     className="mt-3 cursor-pointer text-white group-hover:text-gray-200 inline-flex items-center"
                                 >
-                                    Learn More
-                                    <svg
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        className="w-4 h-4 ml-2"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path d="M5 12h14M12 5l7 7-7 7" />
-                                    </svg>
+                                    <>
+                                        Learn More
+                                        <svg
+                                            fill="none"
+                                            stroke="currentColor"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            className="w-4 h-4 ml-2"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path d="M5 12h14M12 5l7 7-7 7" />
+                                        </svg>
+                                    </>
                                 </Link>
                             </div>
                         </div>
@@ -145,18 +149,20 @@ const Features = () => {
                                     href="/login"
                                     className="mt-3 cursor-pointer text-white group-hover:text-gray-200 inline-flex items-center"
                                 >
-                                    Learn More
-                                    <svg
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        className="w-4 h-4 ml-2"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path d="M5 12h14M12 5l7 7-7 7" />
-                                    </svg>
+                                    <>
+                                        Learn More
+                                        <svg
+                                            fill="none"
+                                            stroke="currentColor"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            className="w-4 h-4 ml-2"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path d="M5 12h14M12 5l7 7-7 7" />
+                                        </svg>
+                                    </>
                                 </Link>
                             </div>
                         </div>
