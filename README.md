@@ -1,4 +1,4 @@
-# VoiceSentri - Transforming Calls into Actionable Feedback
+# SwarBhav - Transforming Calls into Actionable Feedback
 
 <!-- [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/your-username/sentiment-analysis-helpdesk/blob/main/LICENSE) -->
 
@@ -24,7 +24,7 @@ The Sentiment Analysis of Incoming Calls on Helpdesk project is a comprehensive 
 
 -   **Chat Analysis**: Analyze chat conversations to provide summaries, sentiment scores, and key positive and negative words. Users can specify date ranges for analysis.
 
--   **Voice or Audio Sentiment Analysis**: Utilize the Librosa model to classify voice recordings into one of seven different emotions, enhancing the depth of sentiment analysis.
+-   **Swar or Audio Sentiment Analysis**: Utilize the Librosa model to classify Swar recordings into one of seven different emotions, enhancing the depth of sentiment analysis.
 
 -   **Reporting**: Generate comprehensive reports and store the results in a MongoDB database for users to review whenever necessary, facilitating data-driven decision-making.
 
@@ -48,7 +48,7 @@ For a live demo of the project, visit [Demo Link](https://your-demo-link.com).
     -   [Transformers](https://huggingface.co/transformers/): State-of-the-art natural language processing models.
 
 -   Data Sources:
-    -   Voice Dataset
+    -   Swar Dataset
     -   WhatsApp Chats
 
 ## Installation
@@ -56,7 +56,7 @@ For a live demo of the project, visit [Demo Link](https://your-demo-link.com).
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/Archit1706/VoiceSentri.git
+    git clone https://github.com/Archit1706/SwarBhav.git
     ```
 
 2. Install dependencies for both the frontend and backend:
@@ -89,7 +89,7 @@ For a live demo of the project, visit [Demo Link](https://your-demo-link.com).
 
 -   Access the application by visiting the appropriate URL in your browser.
 -   Log in with your credentials to access the dashboard.
--   Explore the chat analysis, voice sentiment analysis, and reporting features based on your user role.
+-   Explore the chat analysis, Swar sentiment analysis, and reporting features based on your user role.
 
 <!-- ## Contributing
 

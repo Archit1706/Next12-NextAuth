@@ -18,21 +18,21 @@ const Home = ({ session }) => {
   return (
     <div>
       <Head>
-        <title>VoiceSentri - Transforming calls into actionable feedback.</title>
-        <meta name="title" content="VoiceSentri - Transforming calls into actionable feedback." />
+        <title>SwarBhav - Transforming calls into actionable feedback.</title>
+        <meta name="title" content="SwarBhav - Transforming calls into actionable feedback." />
         <meta name="description" content="Catalyze customer service excellence with our sentiment analysis platform, deciphering emotions and delivering actionable insights from incoming calls." />
 
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://voice-sentri.vercel.app/" />
-        <meta property="og:title" content="VoiceSentri - Transforming calls into actionable feedback." />
+        <meta property="og:url" content="https://Swar-Bhav.vercel.app/" />
+        <meta property="og:title" content="SwarBhav - Transforming calls into actionable feedback." />
         <meta property="og:description" content="Catalyze customer service excellence with our sentiment analysis platform, deciphering emotions and delivering actionable insights from incoming calls." />
-        <meta property="og:image" content="https://voice-sentri.vercel.app/VoiceSentri.jpg" />
+        <meta property="og:image" content="https://Swar-Bhav.vercel.app/SwarBhav.jpg" />
 
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://voice-sentri.vercel.app/" />
-        <meta property="twitter:title" content="VoiceSentri - Transforming calls into actionable feedback." />
+        <meta property="twitter:url" content="https://Swar-Bhav.vercel.app/" />
+        <meta property="twitter:title" content="SwarBhav - Transforming calls into actionable feedback." />
         <meta property="twitter:description" content="Catalyze customer service excellence with our sentiment analysis platform, deciphering emotions and delivering actionable insights from incoming calls." />
-        <meta property="twitter:image" content="https://voice-sentri.vercel.app/VoiceSentri.jpg" />
+        <meta property="twitter:image" content="https://Swar-Bhav.vercel.app/SwarBhav.jpg" />
         {/* manifest */}
         <link rel="manifest" href="/manifest.json" />
       </Head>

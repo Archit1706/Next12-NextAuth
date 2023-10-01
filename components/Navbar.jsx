@@ -56,8 +56,8 @@ const Navbar = ({ session }) => {
 
                 <Link href="/">
                     <h1 className="text-2xl font-bold text-cyan-700">
-                        <span className="font-medium text-cyan-500">Voice</span>
-                        Sentri
+                        <span className="font-medium text-cyan-500">Swar</span>
+                        Bhav
                         <GiBugleCall className="inline-block ml-1 mb-2 text-cyan-500" />
                     </h1>
                 </Link>

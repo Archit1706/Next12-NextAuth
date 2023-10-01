@@ -40,6 +40,27 @@ export default function Dashboard({ session }) {
 
 
     const [formattedReportData, setFormattedReportData] = useState([]);
+    const [pieValues, setPieValues] = useState([30, 40, 30]);
+    const pieData = {
+        labels: ['Positive', 'Negative', 'Neutral'],
+        datasets: [
+            {
+                label: 'Sentiment Score',
+                data: pieValues,
+                backgroundColor: [
+                    'rgba(56, 189, 248, 0.2)',
+                    'rgba(187, 37, 37, 0.2)',
+                    'rgb(16, 185, 129, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(56, 189, 248, 1)',
+                    'rgba(187, 37, 37, 1)',
+                    'rgb(16, 185, 129, 1)',
+                ],
+                borderWidth: 1,
+            },
+        ],
+    };
 
     // useEffect(() => {
     //     if (!session) {
@@ -111,8 +132,11 @@ export default function Dashboard({ session }) {
                 createdAt_Time: formatDate(item.createdAt).createdAt_Time,
             }));
 
+
+
             // Update the state with the modified data
             setFormattedReportData(updatedData);
+            // setPieValues([formattedReportData?.result["sentiment_scores"]?.positive, formattedReportData?.result["sentiment_scores"]?.negative, formattedReportData?.result["sentiment_scores"]?.neutral])
         }
         else {
             setFormattedReportData([]);
@@ -191,7 +215,7 @@ export default function Dashboard({ session }) {
 
             <div className='flex flex-col justify-center items-center text-center gap-2 md:gap-4 p-4 bg-cyan-50'>
                 <Head>
-                    <title>VoiceSentri | Dashboard</title>
+                    <title>SwarBhav | Dashboard</title>
                 </Head>
                 <div className=" bg-white shadow-sm shadow-cyan-800 w-full h-12 flex justify-center items-center rounded-md">
                     <h1 className='text-2xl md:text-3xl font-bold text-cyan-700'>Dashboard</h1>
@@ -614,27 +638,6 @@ const chartData = {
         borderWidth: 1,
 
     }]
-};
-
-const pieData = {
-    labels: ['Positive', 'Negative', 'Neutral'],
-    datasets: [
-        {
-            label: 'Sentiment Score',
-            data: [30, 40, 30],
-            backgroundColor: [
-                'rgba(56, 189, 248, 0.2)',
-                'rgba(187, 37, 37, 0.2)',
-                'rgb(16, 185, 129, 0.2)',
-            ],
-            borderColor: [
-                'rgba(56, 189, 248, 1)',
-                'rgba(187, 37, 37, 1)',
-                'rgb(16, 185, 129, 1)',
-            ],
-            borderWidth: 1,
-        },
-    ],
 };
 
 const chatResponseSample = {

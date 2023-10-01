@@ -58,7 +58,7 @@ const Features = () => {
                                     immediate response and intervention.
                                 </p>
                                 <a
-                                    href=""
+                                    href="/login"
                                     className="mt-3 cursor-pointer text-white group-hover:text-gray-200 inline-flex items-center"
                                 >
                                     Learn More
@@ -100,7 +100,7 @@ const Features = () => {
                                     decisions.
                                 </p>
                                 <a
-                                    href=""
+                                    href="/login"
                                     className="mt-3 cursor-pointer text-white group-hover:text-gray-200 inline-flex items-center"
                                 >
                                     Learn More
@@ -141,7 +141,7 @@ const Features = () => {
                                     improve service quality over time.
                                 </p>
                                 <a
-                                    href=""
+                                    href="/login"
                                     className="mt-3 cursor-pointer text-white group-hover:text-gray-200 inline-flex items-center"
                                 >
                                     Learn More

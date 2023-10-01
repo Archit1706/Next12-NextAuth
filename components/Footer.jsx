@@ -1,5 +1,5 @@
 import React from "react";
-import { GiBugleCall } from "react-icons/gi";
+import { GiBugleCall, GiSoundWaves } from "react-icons/gi";
 import Link from "next/link";
 const Footer = () => {
     return (
@@ -8,24 +8,24 @@ const Footer = () => {
                 {/* <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
                     <GiBugleCall className="w-10 h-10 text-white p-2 bg-cyan-500 rounded-full" />
 
-                    <span className="ml-3 text-xl">Voice Sentri</span>
+                    <span className="ml-3 text-xl">Swar Bhav</span>
                 </a> */}
                 <Link href="/">
-                    <h1 className="text-2xl font-bold text-cyan-700">
-                        <span className="font-medium text-cyan-500">Voice</span>
-                        Sentri
-                        <GiBugleCall className="inline-block ml-1 mb-2 text-cyan-500" />
+                    <h1 className="text-2xl font-bold text-cyan-700 cursor-pointer">
+                        <span className="font-bold text-cyan-500">स्वर</span>
+                        Bhav
+                        <GiSoundWaves className="inline-block ml-1 h-10 w-100 text-cyan-500" />
                     </h1>
                 </Link>
                 <p className="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
-                    © 2023 Voice Sentri —
+                    © 2023 Swar Bhav —
                     <a
                         href="/"
                         className="text-gray-600 ml-1"
                         rel="noopener noreferrer"
                         target="_blank"
                     >
-                        @voicesentri
+                        @SwarBhav
                     </a>
                 </p>
                 <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">

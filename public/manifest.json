@@ -4,8 +4,8 @@
     "display": "standalone",
     "scope": "/",
     "start_url": "/",
-    "name": "Voice Sentri",
-    "short_name": "VoiceSentri",
+    "name": "Swar Bhav",
+    "short_name": "SwarBhav",
     "description": "Listening to Calls, Understanding Sentiments.",
     "icons": [
         {

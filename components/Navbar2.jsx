@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { fadeIn } from "../lib/fadein";
-import { GiBugleCall } from "react-icons/gi";
+import { GiBugleCall, GiSoundWaves } from "react-icons/gi";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { signOut } from "next-auth/react";
@@ -94,10 +94,10 @@ const Navbar = ({ session }) => {
                 {/* <p className='border-l-2 border-black '></p> */}
 
                 <Link href="/">
-                    <h1 className="text-2xl font-bold text-cyan-700">
-                        <span className="font-medium text-cyan-500">Voice</span>
-                        Sentri
-                        <GiBugleCall className="inline-block ml-1 mb-2 text-cyan-500" />
+                    <h1 className="text-2xl font-bold text-cyan-700 cursor-pointer">
+                        <span className="font-bold text-cyan-500">स्वर</span>
+                        Bhav
+                        <GiSoundWaves className="inline-block ml-1 w-10 h-10 text-cyan-500" />
                     </h1>
                 </Link>
             </div>
