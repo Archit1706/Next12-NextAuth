@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../lib/fadein";
 import { AiOutlineHistory } from "react-icons/ai";
 import { BiSolidReport } from "react-icons/bi";
+import Link from "next/link";
 
 const Features = () => {
     return (
@@ -57,7 +58,7 @@ const Features = () => {
                                     Instantly analyze call sentiment for
                                     immediate response and intervention.
                                 </p>
-                                <a
+                                <Link
                                     href="/login"
                                     className="mt-3 cursor-pointer text-white group-hover:text-gray-200 inline-flex items-center"
                                 >
@@ -73,7 +74,7 @@ const Features = () => {
                                     >
                                         <path d="M5 12h14M12 5l7 7-7 7" />
                                     </svg>
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </motion.div>
@@ -99,7 +100,7 @@ const Features = () => {
                                     specific KPIs and trends to make informed
                                     decisions.
                                 </p>
-                                <a
+                                <Link
                                     href="/login"
                                     className="mt-3 cursor-pointer text-white group-hover:text-gray-200 inline-flex items-center"
                                 >
@@ -115,7 +116,7 @@ const Features = () => {
                                     >
                                         <path d="M5 12h14M12 5l7 7-7 7" />
                                     </svg>
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </motion.div>
@@ -140,7 +141,7 @@ const Features = () => {
                                     Gain valuable insights from past calls to
                                     improve service quality over time.
                                 </p>
-                                <a
+                                <Link
                                     href="/login"
                                     className="mt-3 cursor-pointer text-white group-hover:text-gray-200 inline-flex items-center"
                                 >
@@ -156,7 +157,7 @@ const Features = () => {
                                     >
                                         <path d="M5 12h14M12 5l7 7-7 7" />
                                     </svg>
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </motion.div>
