@@ -81,7 +81,7 @@ const Packages = () => {
                     >
                         <div className="h-full p-6 rounded-lg border-2 border-cyan-300 flex flex-col relative overflow-hidden">
                             <h2 className="text-sm tracking-widest title-font mb-1 font-medium uppercase">
-                                Rookie
+                                Rookie (Employee)
                             </h2>
                             <h1 className="text-5xl text-gray-900 pb-4 mb-4 border-b border-gray-200 leading-none">
                                 ₹
