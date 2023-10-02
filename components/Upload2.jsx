@@ -44,7 +44,7 @@ const Upload2 = () => {
 
         try {
             const response = await fetch(
-                "https://7c46-103-110-234-115.ngrok-free.app/predict?userid=" +
+                "https://a4d2-103-110-234-115.ngrok-free.app/predict?userid=" +
                     userId,
                 {
                     mode: "cors",

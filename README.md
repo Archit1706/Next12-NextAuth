@@ -1,4 +1,4 @@
-# SwarBhav - Transforming Calls into Actionable Feedback
+# SwarBhaav - Transforming Calls into Actionable Feedback
 
 <!-- [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/your-username/sentiment-analysis-helpdesk/blob/main/LICENSE) -->
 
@@ -56,7 +56,7 @@ For a live demo of the project, visit [Demo Link](https://your-demo-link.com).
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/Archit1706/SwarBhav.git
+    git clone https://github.com/Archit1706/SwarBhaav.git
     ```
 
 2. Install dependencies for both the frontend and backend:

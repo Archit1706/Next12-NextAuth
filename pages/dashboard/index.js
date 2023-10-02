@@ -215,7 +215,7 @@ export default function Dashboard({ session }) {
 
             <div className='flex flex-col justify-center items-center text-center gap-2 md:gap-4 p-4 bg-cyan-50'>
                 <Head>
-                    <title>SwarBhav | Dashboard</title>
+                    <title>SwarBhaav | Dashboard</title>
                 </Head>
                 <div className=" bg-white shadow-sm shadow-cyan-800 w-full h-12 flex justify-center items-center rounded-md">
                     <h1 className='text-2xl md:text-3xl font-bold text-cyan-700'>Dashboard</h1>
@@ -432,7 +432,7 @@ export default function Dashboard({ session }) {
                                             id="modal"
                                             className="w-full h-[95vh] rounded-md bg-cyan-100 shadow-lg shadow-gray-400 overflow-y-scroll relative p-4"
                                         >
-                                            <h1 className='text-cyan-600 font-bold text-2xl'>Chat Analyses Report</h1>
+                                            <h1 className='text-cyan-600 font-bold text-2xl'>Chat Analysis Report</h1>
                                             <div
                                                 className=" flex h-full w-full bg-white/50 items-center justify-center gap-2 md:gap-4 p-4"
                                             >

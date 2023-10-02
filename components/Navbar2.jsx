@@ -96,7 +96,7 @@ const Navbar = ({ session }) => {
                 <Link href="/">
                     <h1 className="text-2xl font-bold text-cyan-700 cursor-pointer">
                         <span className="font-bold text-cyan-500">स्वर</span>
-                        Bhav
+                        Bhaav
                         <GiSoundWaves className="inline-block ml-1 w-10 h-10 text-cyan-500" />
                     </h1>
                 </Link>
